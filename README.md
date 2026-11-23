@@ -11,7 +11,7 @@ Python 3.12，依赖由 [uv](https://docs.astral.sh/uv/) 管理。
 curl -LsSf https://astral.sh/uv/install.sh | sh
 
 # 在项目根目录一键创建虚拟环境并安装依赖
-cd ~/Downloads/DeepLearning
+cd deep-learning-cv-lab
 uv sync
 
 # 所有脚本通过项目 venv 运行

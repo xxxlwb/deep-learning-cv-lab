@@ -2,7 +2,7 @@
 data/
 __pycache__/
 *.pyc
-*.pth
+# *.pth
 *.egg-info/
 dist/
 .DS_Store
