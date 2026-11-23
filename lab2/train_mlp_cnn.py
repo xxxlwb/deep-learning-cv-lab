@@ -45,11 +45,11 @@ def get_loaders(batch_size=256, data_dir="../data"):
     full_train = datasets.FashionMNIST(data_dir, train=True,  download=True, transform=tf)
     test_set   = datasets.FashionMNIST(data_dir, train=False, download=True, transform=tf)
     train_loader = DataLoader(Subset(full_train, range(50_000)), batch_size=batch_size,
-                              shuffle=True,  num_workers=2, pin_memory=True)
+                              shuffle=True,  num_workers=4, pin_memory=True)
     val_loader   = DataLoader(Subset(full_train, range(50_000, 60_000)), batch_size=batch_size,
-                              shuffle=False, num_workers=2, pin_memory=True)
+                              shuffle=False, num_workers=4, pin_memory=True)
     test_loader  = DataLoader(test_set, batch_size=batch_size,
-                              shuffle=False, num_workers=2, pin_memory=True)
+                              shuffle=False, num_workers=4, pin_memory=True)
     return train_loader, val_loader, test_loader
 
 # ───────────────────────────────── models ───────────────────────────────────

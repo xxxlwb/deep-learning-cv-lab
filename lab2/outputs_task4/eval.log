@@ -1,0 +1,38 @@
+/home/Wenbo/dl_lab/lab2/eval_diffusion.py:291: UserWarning: set_ticklabels() should only be used with a fixed number of ticks, i.e. after set_ticks() or using a FixedLocator. Otherwise, ticks may be mislabeled.
+  ax.set_xticklabels(CLASS_NAMES, rotation=20, ha="right", fontsize=9)
+Device: cuda
+Loading checkpoint: outputs_task3/ddpm_final.pth
+Collecting training set features …
+
+[1] Generating 16 random samples …
+    Sampling 16 images: 0.8s
+Saved outputs_task4/1_random_grid.png
+
+[2] Forward noising process …
+    Running reverse denoising trajectory …
+Saved outputs_task4/2_noising_denoising.png
+
+[3] Class coverage — generating 100 samples …
+    Sampling 100 images: 0.6s
+    Fitting KNN on 10k training subset …
+Saved outputs_task4/3_class_coverage.png
+    Covered classes: 10/10
+    Distribution: {'T-shirt': 13, 'Trouser': 3, 'Pullover': 20, 'Dress': 5, 'Coat': 9, 'Sandal': 1, 'Shirt': 10, 'Sneaker': 1, 'Bag': 24, 'Ankle boot': 14}
+
+[4] Nearest neighbors in training set …
+Saved outputs_task4/4_nearest_neighbor.png
+
+[5] Failure samples (worst by pixel variance) …
+Saved outputs_task4/5_failure_samples.png
+
+=======================================================
+TASK 4 SUMMARY
+=======================================================
+Sampling 16  images  : 0.80s  (50ms/img)
+Sampling 100 images  : 0.64s  (6ms/img)
+Sampling 64  images  : 0.47s  (7ms/img)
+Class coverage       : 10/10 classes covered
+Device               : cuda
+=======================================================
+
+All outputs saved to outputs_task4/
