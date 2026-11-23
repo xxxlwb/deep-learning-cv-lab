@@ -1,0 +1,15 @@
+[project]
+name = "deeplearning-cv-lab"
+version = "0.1.0"
+description = "深度学习与计算机视觉课程实验 — Fashion-MNIST MLP/CNN/Diffusion"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "torch>=2.2",
+    "torchvision>=0.17",
+    "numpy>=1.26",
+    "matplotlib>=3.8",
+    "seaborn>=0.13",
+    "scikit-learn>=1.4",
+    "tqdm>=4.66",
+]

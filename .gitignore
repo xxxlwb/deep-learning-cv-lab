@@ -1,0 +1,11 @@
+.venv/
+data/
+__pycache__/
+*.pyc
+*.pth
+outputs_lab1/
+outputs_lab2/
+outputs_task*/
+*.egg-info/
+dist/
+.DS_Store
