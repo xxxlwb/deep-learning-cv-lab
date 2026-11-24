@@ -1,6 +1,6 @@
 # Deep Learning & Computer Vision Lab
 
-Fashion-MNIST 分类与生成实验，覆盖实验1（MLP 基线）和实验2（CNN + 扩散模型）。
+Fashion-MNIST 分类与生成实验，覆盖实验1（MLP 基线）和实验2（CNN + 扩散模型）；CIFAR-10 上的实验3（ViT 复现、类别不均衡处理与轻量化）。
 
 ## 环境
 
@@ -181,6 +181,80 @@ Linear(256→10)    : 10        (2,570 params)
 4. `4_nearest_neighbor.png` — 训练集最近邻
 5. `5_failure_samples.png` — 失败样本（不挑选成功样本）
 
+---
+
+## 实验3：Transformer 复现与优化
+
+### 数据
+
+课程提供的 CIFAR-10（32×32 JPG，按 `0`–`9` 类别分文件夹），从课程平台附件下载后解压到 `data/cifar10/`：
+
+| 划分 | 来源 | 数量 |
+|------|------|------|
+| 训练 | `CIFAR10_unbalance` 按类别分层取 90%（种子 42） | 32,023（每类 1,821–4,062，最大/最小 ≈ 2.2） |
+| 验证 | `CIFAR10_unbalance` 剩余 10% | 3,557 |
+| 测试 | `CIFAR10_balance`，只用于最终评价 | 4,870（每类 487） |
+
+首次运行会把图片解码缓存为 `data/cifar10/*.npz`。整个数据集放在 GPU 上，随机裁剪（padding 4）+ 水平翻转也在 GPU 上完成。
+
+### 运行
+
+```bash
+cd lab3
+bash run_all.sh                 # 全流程：4 个从头训练并行 → 2 个轻量化微调 → 测评 → 汇总
+GPUS="0 1 2 3" bash run_all.sh  # 指定 4 张 GPU
+# 单独运行：
+../.venv/bin/python train.py --name baseline --imbalance none
+../.venv/bin/python train.py --name prune --light prune --init outputs/baseline/model.pth
+../.venv/bin/python benchmark.py --ref baseline
+../.venv/bin/python analyze.py --ref baseline
+```
+
+| 文件 | 内容 |
+|------|------|
+| `data.py` | 数据加载、分层划分、GPU 数据增强 |
+| `models.py` | ViT、DynamicViT、ToMe、结构化剪枝 |
+| `train.py` | 训练（基线 / 不均衡处理 / 轻量化蒸馏微调） |
+| `benchmark.py` | 参数量、FLOPs、训练与推理速度；ToMe 免训练评测 |
+| `analyze.py` | 汇总表 `outputs/results.md` 与对比图 `outputs/fig_*.png` |
+
+### 配置
+
+| 项目 | 值 |
+|------|-----|
+| ViT | patch 4×4（64 个 patch + CLS），dim 256，6 层，8 头 × 32，MLP 512，DropPath 0.1，参数量 3.195M |
+| 从头训练 | 200 epoch，batch 256，AdamW lr 1e-3，wd 0.05，10 epoch warmup + cosine，bf16，梯度裁剪 1.0 |
+| 轻量化微调 | 从参考模型初始化，50 epoch，lr 5e-4，5 epoch warmup；参考模型作教师做 KL 蒸馏（权重 0.5） |
+| 种子 | 训练 / 数据增强 42，验证集划分 42，测评 0 |
+| 设备 | NVIDIA B200（单模型单卡），torch 2.15.0+cu132 |
+
+参考模型按**验证集** balanced accuracy 自动选取（不使用测试集），本次为 `baseline`。
+
+### 结果
+
+完整表格见 `lab3/outputs/results.md`，各模型的训练曲线与混淆矩阵见 `lab3/outputs/<name>/`。
+
+**类别不均衡处理（均衡测试集）**
+
+| 方法 | 原理 | 测试准确率 | Macro-F1 | 训练时间 |
+|------|------|-----------|----------|---------|
+| 交叉熵（基线） | — | 76.57% | 76.68 | 282s |
+| 重加权 | 损失按 1/n_c 加权 | 76.20% | 76.28 | 283s |
+| 重采样 | 按 1/n_c 有放回采样，类别均衡 | 76.55% | 76.63 | 321s |
+| Logit Adjustment | 训练时 logits + log π_c，推理用原始 logits | **77.15%** | **77.19** | 275s |
+
+**轻量化与复杂度**（参考模型为基线；GPU 推理 batch 1024 bf16，CPU 推理 8 线程 batch 64 fp32）
+
+| 模型 | 参数量 | FLOPs | 测试准确率 | GPU 推理 | CPU 推理 | 额外训练 |
+|------|--------|-------|-----------|---------|---------|---------|
+| ViT 基线 | 3.195M | 0.436G | 76.57% | 1.00× | 1.00× | — |
+| DynamicViT（keep 0.7，第 2/4 层前） | 3.410M | 0.337G | 75.83% | 1.32× | 1.16× | 118s |
+| 结构化剪枝（头/MLP 各留 50%）+ 蒸馏 | **1.618M** | **0.219G** | 75.52% | **1.49×** | **2.38×** | 85s |
+| ToMe r=6（免训练） | 3.195M | 0.314G | 76.90% | 1.10× | 1.51× | 0 |
+| ToMe r=8（免训练） | 3.195M | 0.273G | 76.39% | 1.21× | 1.48× | 0 |
+
+FLOPs 用 `torch.utils.flop_counter` 统计（含注意力矩阵乘，单张 32×32 输入）；`outputs/vit_summary.txt` 为 torchinfo 的逐层结构表，它的 mult-adds 不计入注意力的矩阵乘，因此不用作 FLOPs。
+
 ## 文件结构
 
 ```
@@ -198,4 +272,9 @@ DeepLearning/
     ├── permutation_test.py # Task 2: 结构先验检验
     ├── diffusion_model.py  # Task 3: DDPM 扩散模型
     └── eval_diffusion.py   # Task 4: 生成结果评价
+└── lab3/
+    ├── data.py / models.py / train.py
+    ├── benchmark.py / analyze.py
+    ├── run_all.sh          # 全流程
+    └── outputs/            # 模型、日志、指标、图表
 ```

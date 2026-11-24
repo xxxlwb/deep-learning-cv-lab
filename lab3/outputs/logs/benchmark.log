@@ -1,0 +1,9 @@
+baseline       params= 3.195M  FLOPs= 0.436G  train=   25467 img/s  gpu_infer=   123819 img/s  lat=2.10ms  cpu=   1463 img/s
+dynamicvit     params= 3.410M  FLOPs= 0.337G  train=   18667 img/s  gpu_infer=   163213 img/s  lat=3.12ms  cpu=   1690 img/s
+logit_adjust   params= 3.195M  FLOPs= 0.436G  train=   27488 img/s  gpu_infer=   123818 img/s  lat=2.16ms  cpu=   1521 img/s
+prune          params= 1.618M  FLOPs= 0.219G  train=   27436 img/s  gpu_infer=   184966 img/s  lat=2.12ms  cpu=   3477 img/s
+resample       params= 3.195M  FLOPs= 0.436G  train=   27438 img/s  gpu_infer=   123861 img/s  lat=2.14ms  cpu=   1243 img/s
+reweight       params= 3.195M  FLOPs= 0.436G  train=   27162 img/s  gpu_infer=   123830 img/s  lat=2.14ms  cpu=   1784 img/s
+tome_r4        params= 3.195M  FLOPs= 0.354G  train=   18079 img/s  gpu_infer=   125470 img/s  lat=4.96ms  cpu=   1699 img/s
+tome_r6        params= 3.195M  FLOPs= 0.314G  train=   18150 img/s  gpu_infer=   136607 img/s  lat=4.92ms  cpu=   2202 img/s
+tome_r8        params= 3.195M  FLOPs= 0.273G  train=   18235 img/s  gpu_infer=   149766 img/s  lat=4.89ms  cpu=   2164 img/s

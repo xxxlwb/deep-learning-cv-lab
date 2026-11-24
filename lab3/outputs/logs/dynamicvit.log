@@ -1,0 +1,54 @@
+[dynamicvit] device=cuda (NVIDIA B200) params=3,410,318 imbalance=none light=dynamicvit epochs=50 bs=256 lr=0.0005 seed=42
+train per-class counts: [3991, 3770, 2759, 3772, 4062, 3345, 3162, 2924, 2417, 1821]
+epoch   1 | loss 0.2278 | train acc 0.9758 | val acc 0.7414 | val bal acc 0.7450 | 3.0s
+epoch   2 | loss 0.0869 | train acc 0.9922 | val acc 0.7557 | val bal acc 0.7583 | 2.3s
+epoch   3 | loss 0.0911 | train acc 0.9909 | val acc 0.7540 | val bal acc 0.7530 | 2.3s
+epoch   4 | loss 0.1105 | train acc 0.9878 | val acc 0.7509 | val bal acc 0.7530 | 2.3s
+epoch   5 | loss 0.1326 | train acc 0.9857 | val acc 0.7402 | val bal acc 0.7428 | 2.3s
+epoch   6 | loss 0.1601 | train acc 0.9790 | val acc 0.7515 | val bal acc 0.7498 | 2.4s
+epoch   7 | loss 0.1632 | train acc 0.9787 | val acc 0.7498 | val bal acc 0.7500 | 2.3s
+epoch   8 | loss 0.1686 | train acc 0.9786 | val acc 0.7461 | val bal acc 0.7461 | 2.3s
+epoch   9 | loss 0.1584 | train acc 0.9788 | val acc 0.7478 | val bal acc 0.7518 | 2.3s
+epoch  10 | loss 0.1540 | train acc 0.9809 | val acc 0.7484 | val bal acc 0.7475 | 2.3s
+epoch  11 | loss 0.1536 | train acc 0.9811 | val acc 0.7512 | val bal acc 0.7544 | 2.3s
+epoch  12 | loss 0.1583 | train acc 0.9799 | val acc 0.7540 | val bal acc 0.7559 | 2.3s
+epoch  13 | loss 0.1523 | train acc 0.9815 | val acc 0.7509 | val bal acc 0.7521 | 2.3s
+epoch  14 | loss 0.1528 | train acc 0.9808 | val acc 0.7534 | val bal acc 0.7499 | 2.3s
+epoch  15 | loss 0.1445 | train acc 0.9826 | val acc 0.7546 | val bal acc 0.7510 | 2.3s
+epoch  16 | loss 0.1469 | train acc 0.9825 | val acc 0.7560 | val bal acc 0.7546 | 2.3s
+epoch  17 | loss 0.1422 | train acc 0.9826 | val acc 0.7504 | val bal acc 0.7546 | 2.3s
+epoch  18 | loss 0.1371 | train acc 0.9838 | val acc 0.7593 | val bal acc 0.7615 | 2.3s
+epoch  19 | loss 0.1352 | train acc 0.9845 | val acc 0.7579 | val bal acc 0.7561 | 2.3s
+epoch  20 | loss 0.1251 | train acc 0.9857 | val acc 0.7565 | val bal acc 0.7585 | 2.4s
+epoch  21 | loss 0.1215 | train acc 0.9873 | val acc 0.7554 | val bal acc 0.7548 | 2.4s
+epoch  22 | loss 0.1160 | train acc 0.9880 | val acc 0.7557 | val bal acc 0.7590 | 2.3s
+epoch  23 | loss 0.1086 | train acc 0.9892 | val acc 0.7602 | val bal acc 0.7587 | 2.3s
+epoch  24 | loss 0.1084 | train acc 0.9894 | val acc 0.7579 | val bal acc 0.7624 | 2.2s
+epoch  25 | loss 0.1029 | train acc 0.9901 | val acc 0.7554 | val bal acc 0.7554 | 2.3s
+epoch  26 | loss 0.1002 | train acc 0.9903 | val acc 0.7585 | val bal acc 0.7575 | 2.3s
+epoch  27 | loss 0.0949 | train acc 0.9908 | val acc 0.7669 | val bal acc 0.7692 | 2.7s
+epoch  28 | loss 0.0905 | train acc 0.9918 | val acc 0.7653 | val bal acc 0.7670 | 2.3s
+epoch  29 | loss 0.0896 | train acc 0.9922 | val acc 0.7655 | val bal acc 0.7669 | 2.3s
+epoch  30 | loss 0.0830 | train acc 0.9933 | val acc 0.7543 | val bal acc 0.7548 | 2.3s
+epoch  31 | loss 0.0775 | train acc 0.9939 | val acc 0.7669 | val bal acc 0.7698 | 2.3s
+epoch  32 | loss 0.0755 | train acc 0.9943 | val acc 0.7588 | val bal acc 0.7611 | 2.4s
+epoch  33 | loss 0.0734 | train acc 0.9947 | val acc 0.7653 | val bal acc 0.7682 | 2.3s
+epoch  34 | loss 0.0675 | train acc 0.9952 | val acc 0.7622 | val bal acc 0.7657 | 2.3s
+epoch  35 | loss 0.0669 | train acc 0.9953 | val acc 0.7616 | val bal acc 0.7660 | 2.3s
+epoch  36 | loss 0.0674 | train acc 0.9954 | val acc 0.7689 | val bal acc 0.7694 | 2.4s
+epoch  37 | loss 0.0620 | train acc 0.9963 | val acc 0.7641 | val bal acc 0.7644 | 2.3s
+epoch  38 | loss 0.0620 | train acc 0.9957 | val acc 0.7667 | val bal acc 0.7704 | 2.2s
+epoch  39 | loss 0.0570 | train acc 0.9968 | val acc 0.7726 | val bal acc 0.7743 | 2.3s
+epoch  40 | loss 0.0573 | train acc 0.9969 | val acc 0.7706 | val bal acc 0.7731 | 2.2s
+epoch  41 | loss 0.0548 | train acc 0.9971 | val acc 0.7697 | val bal acc 0.7708 | 2.3s
+epoch  42 | loss 0.0544 | train acc 0.9969 | val acc 0.7689 | val bal acc 0.7688 | 2.3s
+epoch  43 | loss 0.0538 | train acc 0.9971 | val acc 0.7675 | val bal acc 0.7682 | 2.2s
+epoch  44 | loss 0.0522 | train acc 0.9975 | val acc 0.7700 | val bal acc 0.7715 | 2.3s
+epoch  45 | loss 0.0522 | train acc 0.9975 | val acc 0.7650 | val bal acc 0.7668 | 2.2s
+epoch  46 | loss 0.0509 | train acc 0.9976 | val acc 0.7678 | val bal acc 0.7681 | 2.3s
+epoch  47 | loss 0.0523 | train acc 0.9977 | val acc 0.7703 | val bal acc 0.7714 | 2.3s
+epoch  48 | loss 0.0502 | train acc 0.9978 | val acc 0.7714 | val bal acc 0.7724 | 2.5s
+epoch  49 | loss 0.0516 | train acc 0.9972 | val acc 0.7703 | val bal acc 0.7711 | 2.4s
+epoch  50 | loss 0.0507 | train acc 0.9973 | val acc 0.7697 | val bal acc 0.7705 | 2.9s
+[dynamicvit] done in 118.2s | test acc 0.7583 | balanced acc 0.7583 | macro F1 0.7589
+per-class recall: airplane=0.828, automobile=0.889, bird=0.645, cat=0.651, deer=0.737, dog=0.663, frog=0.805, horse=0.733, ship=0.854, truck=0.778

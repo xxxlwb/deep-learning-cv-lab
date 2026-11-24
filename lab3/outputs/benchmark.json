@@ -1,0 +1,97 @@
+{
+  "baseline": {
+    "params": 3195146,
+    "flops": 436481024,
+    "train_img_s": 25467.37590167339,
+    "gpu_infer_img_s": 123818.61207459128,
+    "gpu_latency_ms": 2.104678191244602,
+    "cpu_infer_img_s": 1462.6829269206373,
+    "kind": "vit",
+    "tome_r": 0
+  },
+  "dynamicvit": {
+    "params": 3410318,
+    "flops": 337301504,
+    "train_img_s": 18667.18534310552,
+    "gpu_infer_img_s": 163212.52707484606,
+    "gpu_latency_ms": 3.1248671002686024,
+    "cpu_infer_img_s": 1689.8817348214045,
+    "kind": "dynamicvit",
+    "tome_r": 0
+  },
+  "logit_adjust": {
+    "params": 3195146,
+    "flops": 436481024,
+    "train_img_s": 27487.75496031855,
+    "gpu_infer_img_s": 123817.84518642524,
+    "gpu_latency_ms": 2.158890012651682,
+    "cpu_infer_img_s": 1520.7021089070217,
+    "kind": "vit",
+    "tome_r": 0
+  },
+  "prune": {
+    "params": 1618442,
+    "flops": 219029504,
+    "train_img_s": 27436.38314330439,
+    "gpu_infer_img_s": 184966.1114000668,
+    "gpu_latency_ms": 2.1230587735772133,
+    "cpu_infer_img_s": 3477.160806553628,
+    "kind": "vit",
+    "tome_r": 0
+  },
+  "resample": {
+    "params": 3195146,
+    "flops": 436481024,
+    "train_img_s": 27438.368704689114,
+    "gpu_infer_img_s": 123860.56138104586,
+    "gpu_latency_ms": 2.139636781066656,
+    "cpu_infer_img_s": 1242.9117113497161,
+    "kind": "vit",
+    "tome_r": 0
+  },
+  "reweight": {
+    "params": 3195146,
+    "flops": 436481024,
+    "train_img_s": 27162.43228982441,
+    "gpu_infer_img_s": 123829.64934460797,
+    "gpu_latency_ms": 2.142427023500204,
+    "cpu_infer_img_s": 1783.6941299469224,
+    "kind": "vit",
+    "tome_r": 0
+  },
+  "tome_r4": {
+    "params": 3195146,
+    "flops": 354192256,
+    "train_img_s": 18078.598102429904,
+    "gpu_infer_img_s": 125469.96566940685,
+    "gpu_latency_ms": 4.958853125572205,
+    "cpu_infer_img_s": 1699.2584353511254,
+    "kind": "vit",
+    "tome_r": 4
+  },
+  "tome_r6": {
+    "params": 3195146,
+    "flops": 313531520,
+    "train_img_s": 18149.65157619845,
+    "gpu_infer_img_s": 136607.08463014473,
+    "gpu_latency_ms": 4.922276828438044,
+    "cpu_infer_img_s": 2201.72856347251,
+    "kind": "vit",
+    "tome_r": 6
+  },
+  "tome_r8": {
+    "params": 3195146,
+    "flops": 273328384,
+    "train_img_s": 18235.380898266525,
+    "gpu_infer_img_s": 149766.05723754354,
+    "gpu_latency_ms": 4.8928712494671345,
+    "cpu_infer_img_s": 2164.023414206242,
+    "kind": "vit",
+    "tome_r": 8
+  },
+  "_env": {
+    "device": "NVIDIA B200",
+    "torch": "2.15.0+cu132",
+    "cpu_threads": 8
+  }
+}
