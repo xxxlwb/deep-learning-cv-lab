@@ -30,7 +30,7 @@ torch.backends.cudnn.deterministic = True
 DEVICE = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 CLASS_NAMES = ["T-shirt","Trouser","Pullover","Dress","Coat",
                "Sandal","Shirt","Sneaker","Bag","Ankle boot"]
-OUT_DIR = "outputs_lab1"
+OUT_DIR = "outputs_task2"
 os.makedirs(OUT_DIR, exist_ok=True)
 
 # ──────────────────────────────── data ──────────────────────────────────────
